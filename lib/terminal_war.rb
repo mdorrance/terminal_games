@@ -46,5 +46,11 @@ puts "Ready for me to deal the cards?"
     puts "Too bad, I'm dealing anyways!"
   end
 puts "Dealer has #{player1.length} cards and you have #{player2.length} cards"
-puts "Ready for the first battle?"
-  response
+puts "Ready for the first battle? 'Y' or 'N'"
+  response = gets.chomp
+  if response == "Y" || response == "y"
+    puts player1.slice(0)
+    puts player2.slice(0)
+  else
+    abort("See yeah!")
+  end
