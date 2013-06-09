@@ -49,8 +49,17 @@ puts "Dealer has #{player1.length} cards and you have #{player2.length} cards"
 puts "Ready for the first battle? 'Y' or 'N'"
   response = gets.chomp
   if response == "Y" || response == "y"
-    puts player1.slice(0)
-    puts player2.slice(0)
+    puts player1.slice!(0) #shows each players card on the table
+    puts player2.slice!(0) #takes top card out of player array
+    if player1.slice(0) > player2.slice(0)
+      player1 << player1.slice(0)
+      player1 << player2.slice(0)
+    else  player1.slice(0) < player2.slice(0)
+      player2 << player1.slice(0)
+      player2 << player2.slice(0)
+    #after the cards are shown- need to determine value and then push both cards to winner's array
+    end
+   puts "Dealer has #{player1.length} cards and you have #{player2.length} cards"
   else
     abort("See yeah!")
   end
