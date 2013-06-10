@@ -21,7 +21,7 @@ puts  deck_of_cards.inspect
 player1 = []
 player2 = []
 
-26.times do |deal|
+26.times do
 player1 << deck_of_cards.slice!(0)
 player2 << deck_of_cards.slice!(0)
   end
@@ -48,16 +48,20 @@ puts "Ready for me to deal the cards? 'Y' or 'N'"
 puts "Dealer has #{player1.length} cards and you have #{player2.length} cards"
 
     puts "Ready for battle? 'Y' or 'N'"
-      response = gets.chomp
-      if response == "Y" || response == "y"
+      response = gets.chomp.upcase
+      if response == "Y"
         until player1 == [] || player2 == []
         player1_battle = []
         player2_battle = []
         player1_battle_value = []
         player2_battle_value = []
-        puts player1.slice(0)
+        puts player1.slice(0).class
+        puts player2.slice(0).class
         player1_battle << player1.slice!(0)
         player2_battle << player2.slice!(0)
+        puts player1_battle.class
+        puts player2_battle.class
+
         player1_battle_value << player1_battle.map{|h| h[:value].to_i}
         player2_battle_value << player2_battle.map{|h| h[:value].to_i}
         puts "Dealer draws #{player1_battle}" #shows each players card on the table
@@ -158,6 +162,8 @@ puts "Dealer has #{player1.length} cards and you have #{player2.length} cards"
                   puts "You Win!"
                 end
         #after the cards are shown- need to determine value and then push both cards to winner's array
+        #after approx 24 battles new arrays that are pushed into player array get to index 0 and break the .map method
+            end
           end
 
        puts "Dealer has #{player1.length} cards and you have #{player2.length} cards"
