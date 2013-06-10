@@ -15,6 +15,6 @@ Work to be done:<br>
    :add testing<br>
    :remove puts statements for error reporting/ debugging<br>
    
-terminal_war_2.rb
-  : comments out all troubleshooting puts statements for cleaner run
-  : same code
+terminal_war_2.rb<br>
+  : comments out all troubleshooting puts statements for cleaner run<br>
+  : same code<br>
