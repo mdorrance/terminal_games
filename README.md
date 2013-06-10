@@ -11,7 +11,7 @@ terminal_war.rb
 
 Work to be done:
    :handle player_1 [] and player_2 []
-    when arrays of hashes are pushed into the player hand after winning a battle or war 
+    when arrays of hashes are pushed into the player hand array after winning a battle or war 
    :add testing
    :remove puts statements for error reporting/ debugging
    
