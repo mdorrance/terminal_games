@@ -10,7 +10,7 @@ The code logic works for battles and war.
 terminal_war.rb
 
 Work to be done:<br>
-   :handle player_1 [] and player_2 []<br>
+   :handle player_1 [] and player_2 []
     when arrays of hashes are pushed into the player hand array after winning a battle or war <br>
    :add testing<br>
    :remove puts statements for error reporting/ debugging<br>
