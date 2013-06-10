@@ -23,10 +23,10 @@ puts "Welcome to War!"
 #     end
 #   end
 # end
-deck_of_cards = [ {"2C"=>2}, {"3C"=>3}, {"4C"=>4}, {"5C"=>5}, {"6C"=>6}, {"7C"=>7}, {"8C"=>8}, {"9C"=>9}, {"10C"=>10}, {"JC"=>11}, {"QC"=>12}, {"KC"=>13}, {"AC"=>14},
-                 {"2D"=>2}, {"3D"=>3}, {"4D"=>4}, {"5D"=>5}, {"6D"=>6}, {"7D"=>7}, {"8D"=>8}, {"9D"=>9}, {"10D"=>10}, {"JD"=>11}, {"QD"=>12}, {"KD"=>13}, {"AD"=>14},
-                 {"2H"=>2}, {"3H"=>3}, {"4H"=>4}, {"5H"=>5}, {"6H"=>6}, {"7H"=>7}, {"8H"=>8}, {"9H"=>9}, {"10H"=>10}, {"JH"=>11}, {"QH"=>12}, {"KH"=>13}, {"AH"=>14},
-                 {"2S"=>2}, {"3S"=>3}, {"4S"=>4}, {"5S"=>5}, {"6S"=>6}, {"7S"=>7}, {"8S"=>8}, {"9S"=>9}, {"10S"=>10}, {"JS"=>11}, {"QS"=>12}, {"KS"=>13}, {"AS"=>14}]
+deck_of_cards = [ {:card=>"2C",:value=>2}, {:card=>"3C",:value=>3}, {:card=>"4C",:value=>4}, {:card=>"5C",:value=>5}, {:card=>"6C",:value=>6}, {:card=>"7C",:value=>7}, {:card=>"8C",:value=>8}, {:card=>"9C",:value=>9}, {:card=>"10C",:value=>10}, {:card=>"JC",:value=>11}, {:card=>"QC",:value=>12}, {:card=>"KC",:value=>13}, {:card=>"AC",:value=>14},
+                 {:card=>"2D",:value=>2}, {:card=>"3D",:value=>3}, {:card=>"4D",:value=>4}, {:card=>"5D",:value=>5}, {:card=>"6D",:value=>6}, {:card=>"7D",:value=>7}, {:card=>"8D",:value=>8}, {:card=>"9D",:value=>9}, {:card=>"10D",:value=>10}, {:card=>"JD",:value=>11}, {:card=>"QD",:value=>12}, {:card=>"KD",:value=>13}, {:card=>"AD",:value=>14},
+                 {:card=>"2H",:value=>2}, {:card=>"3H",:value=>3}, {:card=>"4H",:value=>4}, {:card=>"5H",:value=>5}, {:card=>"6H",:value=>6}, {:card=>"7H",:value=>7}, {:card=>"8H",:value=>8}, {:card=>"9H",:value=>9}, {:card=>"10H",:value=>10}, {:card=>"JH",:value=>11}, {:card=>"QH",:value=>12}, {:card=>"KH",:value=>13}, {:card=>"AH",:value=>14},
+                 {:card=>"2S",:value=>2}, {:card=>"3S",:value=>3}, {:card=>"4S",:value=>4}, {:card=>"5S",:value=>5}, {:card=>"6S",:value=>6}, {:card=>"7S",:value=>7}, {:card=>"8S",:value=>8}, {:card=>"9S",:value=>9}, {:card=>"10S",:value=>10}, {:card=>"JS",:value=>11}, {:card=>"QS",:value=>12}, {:card=>"KS",:value=>13}, {:card=>"AS",:value=>14}]
 deck_of_cards = deck_of_cards.shuffle
 puts  deck_of_cards.inspect
 
@@ -36,7 +36,7 @@ player2 = []
 26.times do |deal|
 player1 << deck_of_cards.slice!(0)
 player2 << deck_of_cards.slice!(0)
-end
+  end
 puts player1.inspect
 puts player2.inspect
 
@@ -53,7 +53,7 @@ response = gets.chomp
 puts "Ready for me to deal the cards? 'Y' or 'N'"
   response = gets.chomp
   if response == "Y" || response == "y"
-    puts []
+
   else
     puts "Too bad, I'm dealing anyways!"
   end
@@ -61,38 +61,89 @@ puts "Dealer has #{player1.length} cards and you have #{player2.length} cards"
 puts "Ready for battle? 'Y' or 'N'"
   response = gets.chomp
   if response == "Y" || response == "y"
-    puts "Dealer draws #{player1.slice!(0)}" #shows each players card on the table
-    puts "You draw #{player2.slice!(0)}" #takes top card out of player array
-    if player1.slice(0) > player2.slice(0)
-      player1 << player1.slice(0)
-      player1 << player2.slice(0)
+
+    player1_battle = []
+    player2_battle = []
+    player1_battle_value = []
+    player2_battle_value = []
+    player1_battle << player1.slice!(0)
+    player2_battle << player2.slice!(0)
+    player1_battle_value << player1_battle.map{|h| h[:value].to_i}
+    player2_battle_value << player2_battle.map{|h| h[:value].to_i}
+    puts "Dealer draws #{player1_battle}" #shows each players card on the table
+    puts "You draw #{player2_battle}" #takes top card out of player array
+    puts player1_battle_value
+    puts player2_battle_value
+    puts player1_battle_value <=> player2_battle_value
+    battle_value = player1_battle_value <=> player2_battle_value
+    puts battle_value
+     if battle_value == 1
+      player1 << player1_battle
+      player1 << player2_battle
       puts "Dealer Wins!"
-    else  player1.slice(0) < player2.slice(0)
-      player2 << player1.slice(0)
-      player2 << player2.slice(0)
-      puts "You Win!"
 
-    #after the cards are shown- need to determine value and then push both cards to winner's array
-    end
-   puts "Dealer has #{player1.length} cards and you have #{player2.length} cards"
-   puts "Battle again? 'Y' or 'N'?"
-    response = gets.chomp
-    if response == "Y" || response == "y"
-      #until response == 'N' || response != 'n'
-        puts "Dealer draws #{player1.slice!(0)}" #shows each players card on the table
-        puts "You draw #{player2.slice!(0)}" #takes top card out of player array
-        if player1.slice(0) > player2.slice(0)
-          player1 << player1.slice(0)
-          player1 << player2.slice(0)
-        else  player1.slice(0) < player2.slice(0)
-          player2 << player1.slice(0)
-          player2 << player2.slice(0)
+      elsif  battle_value == -1
+        player1 << player1_battle
+        player1 << player2_battle
+        puts "You Win!"
 
-        #after the cards are shown- need to determine value and then push both cards to winner's array
+      else battle_value == 0
+        player1_battle << player1.slice!(1..2)
+        player2_battle << player2.slice!(1..2)
+        player1_battle_value << player1_battle.slice(2).map{|h| h[:value].to_i}
+        player2_battle_value << player2_battle.slice(2).map{|h| h[:value].to_i}
+
+        puts "Dealer draws #{player1_battle.slice(2)}" #shows each players card on the table
+        puts "You draw #{player2_battle.slice(2)}" #takes top card out of player array
+        puts player1_battle_value
+        puts player2_battle_value
+        puts player1_battle_value <=> player2_battle_value
+        battle_value = player1_battle_value <=> player2_battle_value
+        puts battle_value
+         if battle_value == 1
+          player1 << player1_battle
+          player1 << player2_battle
+          puts "Dealer Wins!"
+
+        elsif  battle_value == -1
+          player2 << player1_battle
+          player2 << player2_battle
+          puts "You Win!"
+
+        else battle_value == 0
+          player1_battle << player1.slice!(1..2)
+          player2_battle << player2.slice!(1..2)
+          player1_battle_value << player1_battle.slice(2).map{|h| h[:value].to_i}
+          player2_battle_value << player2_battle.slice(2).map{|h| h[:value].to_i}
         end
+    #after the cards are shown- need to determine value and then push both cards to winner's array
       end
-    #end
    puts "Dealer has #{player1.length} cards and you have #{player2.length} cards"
+   # puts "Battle again? 'Y' or 'N'?"
+   #  response = gets.chomp
+   #  if response == "Y" || response == "y"
+   #    #until response == 'N' || response != 'n'
+   #      puts "Dealer draws #{player1.slice!(0)}" #shows each players card on the table
+   #      puts "You draw #{player2.slice!(0)}" #takes top card out of player array
+   #      if player1.slice(0) > player2.slice(0)
+   #        player1 << player1.slice(0)
+   #        player1 << player2.slice(0)
+   #      else  player1.slice(0) < player2.slice(0)
+   #        player2 << player1.slice(0)
+   #        player2 << player2.slice(0)
+
+   #      #after the cards are shown- need to determine value and then push both cards to winner's array
+   #      end
+
+   #    end
+   #  end
+
+    # puts "Dealer has #{player1.length} cards and you have #{player2.length} cards"
+    #   else
+    #     abort("See yeah!")
   else
     abort("See yeah!")
   end
+
+
+
