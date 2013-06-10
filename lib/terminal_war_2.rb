@@ -16,7 +16,7 @@ deck_of_cards =[ {:card=>"2C",:value=>2}, {:card=>"3C",:value=>3}, {:card=>"4C",
                  {:card=>"2H",:value=>2}, {:card=>"3H",:value=>3}, {:card=>"4H",:value=>4}, {:card=>"5H",:value=>5}, {:card=>"6H",:value=>6}, {:card=>"7H",:value=>7}, {:card=>"8H",:value=>8}, {:card=>"9H",:value=>9}, {:card=>"10H",:value=>10}, {:card=>"JH",:value=>11}, {:card=>"QH",:value=>12}, {:card=>"KH",:value=>13}, {:card=>"AH",:value=>14},
                  {:card=>"2S",:value=>2}, {:card=>"3S",:value=>3}, {:card=>"4S",:value=>4}, {:card=>"5S",:value=>5}, {:card=>"6S",:value=>6}, {:card=>"7S",:value=>7}, {:card=>"8S",:value=>8}, {:card=>"9S",:value=>9}, {:card=>"10S",:value=>10}, {:card=>"JS",:value=>11}, {:card=>"QS",:value=>12}, {:card=>"KS",:value=>13}, {:card=>"AS",:value=>14}]
 deck_of_cards = deck_of_cards.shuffle
-puts  deck_of_cards.inspect
+#puts  deck_of_cards.inspect
 
 player1 = []
 player2 = []
@@ -25,8 +25,8 @@ player2 = []
 player1 << deck_of_cards.slice!(0)
 player2 << deck_of_cards.slice!(0)
   end
-puts player1.inspect
-puts player2.inspect
+# puts player1.inspect
+# puts player2.inspect
 
 puts "Would you like to play War with me? Y or N"
 
@@ -55,22 +55,22 @@ puts "Dealer has #{player1.length} cards and you have #{player2.length} cards"
         player2_battle = []
         player1_battle_value = []
         player2_battle_value = []
-        puts player1.slice(0).class
-        puts player2.slice(0).class
+        # puts player1.slice(0).class
+        # puts player2.slice(0).class
         player1_battle << player1.slice!(0)
         player2_battle << player2.slice!(0)
-        puts player1_battle.class
-        puts player2_battle.class
+        # puts player1_battle.class
+        # puts player2_battle.class
 
         player1_battle_value.concat(player1_battle.map{|h| h[:value].to_i})
         player2_battle_value.concat(player2_battle.map{|h| h[:value].to_i})
         puts "Dealer draws #{player1_battle}" #shows each players card on the table
         puts "You draw #{player2_battle}" #takes top card out of player array
-        puts player1_battle_value
-        puts player2_battle_value
-        puts player1_battle_value <=> player2_battle_value
+        # puts player1_battle_value
+        # puts player2_battle_value
+        # puts player1_battle_value <=> player2_battle_value
         battle_value = player1_battle_value <=> player2_battle_value
-        puts battle_value
+        #puts battle_value
          if battle_value == 1
           player1 << player1_battle
           player1 << player2_battle
@@ -88,18 +88,18 @@ puts "Dealer has #{player1.length} cards and you have #{player2.length} cards"
             player2_battle_value1 = []
             player1_battle1 << player1.slice!(1)
             player2_battle1 << player2.slice!(1)
-            puts player1_battle1
-            puts player2_battle1
+            # puts player1_battle1
+            # puts player2_battle1
             player1_battle_value1.concat(player1_battle1.map{|h| h[:value].to_i})
             player2_battle_value1.concat(player2_battle1.map{|h| h[:value].to_i})
 
             puts "Dealer draws #{player1_battle1}" #shows each players card on the table
             puts "You draw #{player2_battle1}" #takes top card out of player array
-            puts player1_battle_value1
-            puts player2_battle_value1
-            puts player1_battle_value1 <=> player2_battle_value1
+            # puts player1_battle_value1
+            # puts player2_battle_value1
+            # puts player1_battle_value1 <=> player2_battle_value1
             battle_value = player1_battle_value1 <=> player2_battle_value1
-            puts battle_value
+            #puts battle_value
              if battle_value == 1
               player1 << player1_battle
               player1 << player2_battle
@@ -130,11 +130,11 @@ puts "Dealer has #{player1.length} cards and you have #{player2.length} cards"
 
                 puts "Dealer draws #{player1_battle2}" #shows each players card on the table
                 puts "You draw #{player2_battle2}" #takes top card out of player array
-                puts player1_battle_value2
-                puts player2_battle_value2
-                puts player1_battle_value2 <=> player2_battle_value2
+                # puts player1_battle_value2
+                # puts player2_battle_value2
+                # puts player1_battle_value2 <=> player2_battle_value2
                 battle_value = player1_battle_value2 <=> player2_battle_value2
-                puts battle_value
+                #puts battle_value
                  if battle_value == 1
                   player1 << player1_battle
                   player1 << player2_battle
@@ -169,13 +169,11 @@ puts "Dealer has #{player1.length} cards and you have #{player2.length} cards"
 
        puts "Dealer has #{player1.length} cards and you have #{player2.length} cards"
 
-       puts player1.inspect
-       puts player2.inspect
+       #puts player1.inspect
+       #puts player2.inspect
      end
 
   else
     abort("See yeah!")
   end
-
-
 
