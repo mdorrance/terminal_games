@@ -19,14 +19,14 @@ deck_of_cards = deck_of_cards.shuffle
 puts  deck_of_cards.inspect
 
 dealer = []
-player1 = []
+player = []
 
 26.times do
 dealer << deck_of_cards.slice!(0)
-player1 << deck_of_cards.slice!(0)
+player << deck_of_cards.slice!(0)
   end
 puts dealer.inspect
-puts player1.inspect
+puts player.inspect
 
 puts "Would you like to play War with me? Y or N"
 
@@ -45,126 +45,126 @@ puts "Ready for me to deal the cards? 'Y' or 'N'"
   else
     puts "Too bad, I'm dealing anyways!"
   end
-puts "Dealer has #{dealer.length} cards and you have #{player1.length} cards"
+puts "Dealer has #{dealer.length} cards and you have #{player.length} cards"
 
     puts "Ready for battle? 'Y' or 'N'"
       response = gets.chomp.upcase
       if response == "Y"
-        until dealer == [] || player1 == []
+        until dealer == [] || player == []
         dealer_battle = []
-        player1_battle = []
+        player_battle = []
         dealer_battle_value = []
-        player1_battle_value = []
+        player_battle_value = []
         puts dealer.slice(0).class
-        puts player1.slice(0).class
+        puts player.slice(0).class
         dealercard = dealer.slice!(0)
-        player1card = player1.slice!(0)
+        playercard = player.slice!(0)
         dealer_battle << dealercard
-        player1_battle << player1card
+        player_battle << playercard
         puts dealer_battle.class
-        puts player1_battle.class
+        puts player_battle.class
 
         dealer_battle_value = (dealer_battle.map{|h| h[:value].to_i})
-        player1_battle_value = (player1_battle.map{|h| h[:value].to_i})
+        player_battle_value = (player_battle.map{|h| h[:value].to_i})
         puts "Dealer draws #{dealer_battle}" #shows each players card on the table
-        puts "You draw #{player1_battle}" #takes top card out of player array
+        puts "You draw #{player_battle}" #takes top card out of player array
         puts dealer_battle_value
-        puts player1_battle_value
-        puts dealer_battle_value <=> player1_battle_value
-        battle_value = dealer_battle_value <=> player1_battle_value
+        puts player_battle_value
+        puts dealer_battle_value <=> player_battle_value
+        battle_value = dealer_battle_value <=> player_battle_value
         puts battle_value
          if battle_value == 1
           dealer << dealercard
-          dealer << player1card
+          dealer << playercard
           puts "Dealer Wins!"
 
           elsif  battle_value == -1
-            player1 << dealercard
-            player1 << player1card
+            player << dealercard
+            player << playercard
             puts "You Win!"
 
           else battle_value == 0
             dealer_battle1 = []
-            player1_battle1 = []
+            player_battle1 = []
             dealer_battle_value1 = []
-            player1_battle_value1 = []
+            player_battle_value1 = []
             dealercard1 = dealer.slice!(1)
-            player1card1 = player1.slice!(1)
+            playercard1 = player.slice!(1)
             dealer_battle1 << dealercard1
-            player1_battle1 << player1card1
+            player_battle1 << playercard1
             puts dealer_battle1
-            puts player1_battle1
+            puts player_battle1
             dealer_battle_value1.concat(dealer_battle1.map{|h| h[:value].to_i})
-            player1_battle_value1.concat(player1_battle1.map{|h| h[:value].to_i})
+            player_battle_value1.concat(player_battle1.map{|h| h[:value].to_i})
 
             puts "Dealer draws #{dealer_battle1}" #shows each players card on the table
-            puts "You draw #{player1_battle1}" #takes top card out of player array
+            puts "You draw #{player_battle1}" #takes top card out of player array
             puts dealer_battle_value1
-            puts player1_battle_value1
-            puts dealer_battle_value1 <=> player1_battle_value1
-            battle_value = dealer_battle_value1 <=> player1_battle_value1
+            puts player_battle_value1
+            puts dealer_battle_value1 <=> player_battle_value1
+            battle_value = dealer_battle_value1 <=> player_battle_value1
             puts battle_value
              if battle_value == 1
               dealer << dealercard
-              dealer << player1card
-              dealer << player1.slice!(0)
+              dealer << playercard
+              dealer << player.slice!(0)
               dealer << dealer.slice!(0)
               dealer << dealercard1
-              dealer << player1card1
+              dealer << playercard1
               puts "Dealer Wins!"
 
             elsif  battle_value == -1
-              player1 << dealercard
-              player1 << dealer.slice!(0)
-              player1 << player1card
-              player1 << player1.slice!(0)
-              player1 << dealercard1
-              player1 << player1card1
+              player << dealercard
+              player << dealer.slice!(0)
+              player << playercard
+              player << player.slice!(0)
+              player << dealercard1
+              player << playercard1
               puts "You Win!"
 
             else battle_value == 0
               dealer_battle2 = []
-              player1_battle2 = []
+              player_battle2 = []
               dealer_battle_value2 = []
-              player1_battle_value2 = []
+              player_battle_value2 = []
               dealercard2 = dealer.slice!(1)
-              player1card2 = player1.slice!(1)
+              playercard2 = player.slice!(1)
               dealer_battle2 << dealercard2
-              player1_battle2 << player1card2
+              player_battle2 << playercard2
               dealer_battle_value.concat(dealer_battle2.map{|h| h[:value].to_i})
-              player1_battle_value.concat(player1_battle2.map{|h| h[:value].to_i})
+              player_battle_value.concat(player_battle2.map{|h| h[:value].to_i})
 
                 puts "Dealer draws #{dealer_battle2}" #shows each players card on the table
-                puts "You draw #{player1_battle2}" #takes top card out of player array
+                puts "You draw #{player_battle2}" #takes top card out of player array
                 puts dealer_battle_value2
-                puts player1_battle_value2
-                puts dealer_battle_value2 <=> player1_battle_value2
-                battle_value = dealer_battle_value2 <=> player1_battle_value2
+                puts player_battle_value2
+                puts dealer_battle_value2 <=> player_battle_value2
+                battle_value = dealer_battle_value2 <=> player_battle_value2
                 puts battle_value
                  if battle_value == 1
                   dealer << dealercard
-                  dealer << player1card
-                  dealer << player1.slice!(0)
+                  dealer << playercard
+                  dealer << player.slice!(0)
                   dealer << dealer.slice!(0)
                   dealer << dealercard1
-                  dealer << player1card1
+                  dealer << playercard1
                   dealer << dealercard2
-                  dealer << player1card2
-                  dealer << player1.slice!(0)
+                  dealer << playercard2
+                  dealer << player.slice!(0)
                   dealer << dealer.slice!(0)
                   puts "Dealer Wins!"
 
                 elsif  battle_value == -1
-                  player1 << dealercard
-                  player1 << dealer.slice!(0)
-                  player1 << player1card
-                  player1 << player1.slice!(0)
-                  player1 << dealercard1
-                  player1 << player1card1
-                  player1 << dealercard2
-                  player1 << player1card2
-                  player1 << player1.slice!(0)
-                  player1 << dealer.slice!(0)
+                  player << dealercard
+                  player << dealer.slice!(0)
+                  player << playercard
+                  player << player.slice!(0)
+                  player << dealercard1
+                  player << playercard1
+                  player << dealercard2
+                  player << playercard2
+                  player << player.slice!(0)
+                  player << dealer.slice!(0)
                   puts "You Win!"
                 end
         #after the cards are shown- need to determine value and then push both cards to winner's array
@@ -173,10 +173,10 @@ puts "Dealer has #{dealer.length} cards and you have #{player1.length} cards"
             end
           end
 
-       puts "Dealer has #{dealer.length} cards and you have #{player1.length} cards"
+       puts "Dealer has #{dealer.length} cards and you have #{player.length} cards"
 
        puts dealer.inspect
-       puts player1.inspect
+       puts player.inspect
      end
 
   else

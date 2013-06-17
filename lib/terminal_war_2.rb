@@ -71,31 +71,129 @@ def battle_prompt
           @dealer << @playercard
           puts "Dealer Wins!"
           puts "Dealer has #{@dealer.length} cards and you have #{@player.length} cards"
+          puts @dealer.inspect
+          puts @player.inspect
           battle_prompt
           elsif  battle_value == -1
             @player << @dealercard
             @player << @playercard
             puts "You Win!"
             puts "Dealer has #{@dealer.length} cards and you have #{@player.length} cards"
+            puts @dealer.inspect
+            puts @player.inspect
             battle_prompt
           else battle_value == 0
             dealer_battle1 = []
             player_battle1 = []
             dealer_battle_value1 = []
             player_battle_value1 = []
-            dealercard1 = @dealer.slice!(2)
-            playercard1 = @player.slice!(2)
+            dealercard1 = @dealer.slice!(1)
+            playercard1 = @player.slice!(1)
             dealer_battle1 << dealercard1
             player_battle1 << playercard1
             puts dealer_battle1
             puts player_battle1
             dealer_battle_value1.concat(dealer_battle1.map{|h| h[:value].to_i})
             player_battle_value1.concat(player_battle1.map{|h| h[:value].to_i})
+            puts "Dealer draws #{dealer_battle1}" #shows each players card on the table
+            puts "You draw #{player_battle1}" #takes top card out of player array
+            puts dealer_battle_value1
+            puts player_battle_value1
+            puts dealer_battle_value1 <=> player_battle_value1
+            battle_value = dealer_battle_value1 <=> player_battle_value1
+            puts battle_value
+
+             if battle_value == 1
+              @dealer << @playercard
+              @dealer << playercard1
+              @dealer << @player.slice!(0)
+              @dealer << @dealercard
+              @dealer << dealercard1
+              @dealer << @dealer.slice!(0)
+              puts "Dealer Wins!"
+              puts "Dealer has #{@dealer.length} cards and you have #{@player.length} cards"
+              puts @dealer.inspect
+              puts @player.inspect
+              battle_prompt
+
+            elsif  battle_value == -1
+              @player << @dealercard
+              @player << dealercard1
+              @player << @dealer.slice!(0)
+              @player << @playercard
+              @player << playercard1
+              @player << @player.slice!(0)
+              puts "You Win!"
+              puts "Dealer has #{@dealer.length} cards and you have #{@player.length} cards"
+              puts @dealer.inspect
+              puts @player.inspect
+              battle_prompt
+
+            else battle_value == 0
+              dealer_battle2 = []
+              player_battle2 = []
+              dealer_battle_value2 = []
+              player_battle_value2 = []
+              dealercard2 = @dealer.slice!(1)
+              playercard2 = @player.slice!(1)
+              dealer_battle2 << dealercard2
+              player_battle2 << playercard2
+              dealer_battle_value2.concat(dealer_battle2.map{|h| h[:value].to_i})
+              player_battle_value2.concat(player_battle2.map{|h| h[:value].to_i})
+
+                puts "Dealer draws #{dealer_battle2}" #shows each players card on the table
+                puts "You draw #{player_battle2}" #takes top card out of player array
+                puts dealer_battle_value2
+                puts player_battle_value2
+                puts dealer_battle_value2 <=> player_battle_value2
+                battle_value = dealer_battle_value2 <=> player_battle_value2
+                puts battle_value
+                 if battle_value == 1
+                  @dealer << @dealercard
+                  @dealer << dealercard1
+                  @dealer << dealercard2
+                  @dealer << @dealer.slice!(0)
+                  @dealer << @dealer.slice!(1)
+                  @dealer << @dealer.slice!(2)
+                  @dealer << @playercard
+                  @dealer << playercard1
+                  @dealer << playercard2
+                  @dealer << @player.slice!(0)
+                  @dealer << @player.slice!(1)
+                  @dealer << @player.slice!(2)
+
+
+                  puts "Dealer Wins!"
+                  puts "Dealer has #{@dealer.length} cards and you have #{@player.length} cards"
+                  puts @dealer.inspect
+                  puts @player.inspect
+                  battle_prompt
+
+                elsif  battle_value == -1
+                  @player << @dealercard
+                  @player << dealercard1
+                  @player << dealercard2
+                  @player << @dealer.slice!(0)
+                  @player << @dealer.slice!(1)
+                  @player << @dealer.slice!(2)
+                  @player << @playercard
+                  @player << playercard1
+                  @player << playercard2
+                  @player << @player.slice!(0)
+                  @player << @dealer.slice!(1)
+                  @player << @dealer.slice!(2)
+                  puts "You Win!"
+                  puts "Dealer has #{@dealer.length} cards and you have #{@player.length} cards"
+                  puts @dealer.inspect
+                  puts @player.inspect
+                  battle_prompt
+                end
+            end
           end
         end
         card_evaluation
       else
-        puts "Have a good one!"
+        puts "You quit so the dealer wins! Have a good one!"
       end
     end
 puts "Welcome to War!"
@@ -119,92 +217,4 @@ puts "Ready for me to deal the cards? 'Y' or 'N'"
 puts "Dealer has #{@dealer.length} cards and you have #{@player.length} cards"
 
   battle_prompt
-  #           puts "Dealer draws #{dealer_battle1}" #shows each players card on the table
-  #           puts "You draw #{player_battle1}" #takes top card out of player array
-  #           puts dealer_battle_value1
-  #           puts player_battle_value1
-  #           puts dealer_battle_value1 <=> player_battle_value1
-  #           battle_value = dealer_battle_value1 <=> player_battle_value1
-  #           puts battle_value
-  #            if battle_value == 1
-  #             dealer << dealercard
-  #             dealer << playercard
-  #             dealer << player.slice!(0)
-  #             dealer << dealer.slice!(0)
-  #             dealer << dealercard1
-  #             dealer << playercard1
-  #             puts "Dealer Wins!"
-
-  #           elsif  battle_value == -1
-  #             player << dealercard
-  #             player << dealer.slice!(0)
-  #             player << playercard
-  #             player << player.slice!(0)
-  #             player << dealercard1
-  #             player << playercard1
-  #             puts "You Win!"
-
-  #           else battle_value == 0
-  #             dealer_battle2 = []
-  #             player_battle2 = []
-  #             dealer_battle_value2 = []
-  #             player_battle_value2 = []
-  #             dealercard2 = dealer.slice!(1)
-  #             playercard2 = player.slice!(1)
-  #             dealer_battle2 << dealercard2
-  #             player_battle2 << playercard2
-  #             dealer_battle_value.concat(dealer_battle2.map{|h| h[:value].to_i})
-  #             player_battle_value.concat(player_battle2.map{|h| h[:value].to_i})
-
-  #               puts "Dealer draws #{dealer_battle2}" #shows each players card on the table
-  #               puts "You draw #{player_battle2}" #takes top card out of player array
-  #               puts dealer_battle_value2
-  #               puts player_battle_value2
-  #               puts dealer_battle_value2 <=> player_battle_value2
-  #               battle_value = dealer_battle_value2 <=> player_battle_value2
-  #               puts battle_value
-  #                if battle_value == 1
-  #                 dealer << dealercard
-  #                 dealer << playercard
-  #                 dealer << player.slice!(0)
-  #                 dealer << dealer.slice!(0)
-  #                 dealer << dealercard1
-  #                 dealer << playercard1
-  #                 dealer << dealercard2
-  #                 dealer << playercard2
-  #                 dealer << player.slice!(0)
-  #                 dealer << dealer.slice!(0)
-  #                 puts "Dealer Wins!"
-
-  #               elsif  battle_value == -1
-  #                 player << dealercard
-  #                 player << dealer.slice!(0)
-  #                 player << playercard
-  #                 player << player.slice!(0)
-  #                 player << dealercard1
-  #                 player << playercard1
-  #                 player << dealercard2
-  #                 player << playercard2
-  #                 player << player.slice!(0)
-  #                 player << dealer.slice!(0)
-  #                 puts "You Win!"
-  #               end
-  #       #after the cards are shown- need to determine value and then push both cards to winner's array
-  #       #after approx 24 battles new arrays that are pushed into player array get to index 0 and break the .map method
-  #       #trying to learn how to iterate an array of hashes in an
-  #           end
-  #         end
-
-  #      puts "Dealer has #{dealer.length} cards and you have #{player.length} cards"
-
-  #      puts dealer.inspect
-  #      puts player.inspect
-      #end
-
-  # else
-  #    abort("See yeah!")
- # end
-
-
-
 
