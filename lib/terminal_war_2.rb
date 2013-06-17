@@ -4,11 +4,35 @@
 #Player 2 then lays down their top card.
 #The player with the highest card wins both cards and then the next round continues.
 #If both players play a card of the same value then they go to War.
-#The players each lay down the next two cards face down and then expose the last card.
+#The players each lay down the next card face down and then expose the second card.
 #The player with the highest card value wins all of the cards unless it is a tie.
 #War continues until a player wins.
-# The game is won when one player collects all of the other players cards.
+#The game is won when one player collects all of the other players cards or a player runs out of
+#cards during a War.
 
+
+#asks the player if they want to play the game
+def play_prompt
+  puts "Would you like to play War with me? Y or N"
+  response = gets.chomp
+  if response == "Y" || response == "y"
+    puts "It's time for War!"
+  else
+      abort("Have a good day 'Chicken!'")
+  end
+end
+
+#asks the player if they are ready for the cards to be dealt
+def deal_prompt
+  puts "Ready for me to deal the cards? 'Y' or 'N'"
+  response = gets.chomp
+    if response == "Y" || response == "y"
+      deal_cards
+    else
+      puts "Too bad, I'm dealing anyways!"
+    end
+  puts "Dealer has #{@dealer.length} cards and you have #{@player.length} cards"
+end
 
 #creates a deck of cards with suits and card values
 def deal_cards
@@ -30,10 +54,26 @@ def deal_cards
   puts @player.inspect
 end
 
+@ticker = 0
+#defines the battle sequence and evaluation for playing a single round
 def battle_prompt
+
+  if @dealer.length == 52
+    puts "Dealer wins! Nice try! Want to play again? Y or N?"
+    deal_prompt
+    battle_prompt
+  elsif @player.length == 52
+    puts "You win! Good job! Want to play again? Y or N?"
+    deal_prompt
+    battle_prompt
+  else
       puts "Ready for battle? 'Y' or 'N'"
       response = gets.chomp.upcase
       if response == "Y"
+        @ticker = @ticker + 1
+        puts "#{@ticker} battles"
+
+        #pulls and evaluates the dealer's top card
         def dealer_draw
           dealer_battle = []
           dealer_battle_value = []
@@ -44,6 +84,7 @@ def battle_prompt
           @dealer_battle_value = (dealer_battle.map{|h| h[:value].to_i})
         end
 
+        #pulls and evaluates the player's top card
         def player_draw
           player_battle = []
           player_battle_value = []
@@ -54,14 +95,13 @@ def battle_prompt
           @player_battle_value = (player_battle.map{|h| h[:value].to_i})
         end
 
-        #until @dealer == [] || @player == []
-
-
         puts dealer_draw
         puts player_draw
         puts "Dealer draws #{@dealercard}" #shows each players card on the table
         puts "You draw #{@playercard}" #takes top card out of player array
 
+        #evaluates and decides which player wins and pushes all cards into winner's hand
+        #handles single war and double war
         def card_evaluation
         puts @dealer_battle_value <=> @player_battle_value
         battle_value = @dealer_battle_value <=> @player_battle_value
@@ -82,7 +122,7 @@ def battle_prompt
             puts @dealer.inspect
             puts @player.inspect
             battle_prompt
-          else battle_value == 0
+          elsif battle_value == 0 && @dealer.length > 2 || battle_value == 0 && @player.length > 2
             dealer_battle1 = []
             player_battle1 = []
             dealer_battle_value1 = []
@@ -187,34 +227,24 @@ def battle_prompt
                   puts @dealer.inspect
                   puts @player.inspect
                   battle_prompt
+
                 end
+              end
             end
           end
-        end
+
+
+
         card_evaluation
       else
         puts "You quit so the dealer wins! Have a good one!"
       end
     end
+  end
+
+
 puts "Welcome to War!"
-puts "Would you like to play War with me? Y or N"
-
-response = gets.chomp
-  if response == "Y" || response == "y"
-    puts "It's time for War!"
-  else
-      abort("Have a good day 'Chicken!'")
-
-  end
-
-puts "Ready for me to deal the cards? 'Y' or 'N'"
-  response = gets.chomp
-  if response == "Y" || response == "y"
-    deal_cards
-  else
-    puts "Too bad, I'm dealing anyways!"
-  end
-puts "Dealer has #{@dealer.length} cards and you have #{@player.length} cards"
-
-  battle_prompt
+play_prompt
+deal_prompt
+battle_prompt
 
