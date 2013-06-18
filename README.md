@@ -1,20 +1,16 @@
 terminal_games
 ==============
 
-war in terminal
+War in terminal
 
 This is my version of the card game War run in terminal.
 
-The code logic works for battles and war.
+The code logic works for both battles and upto a triple war.
 
-terminal_war.rb
+lib/terminal_war_2.rb is my final version as of 6/17/13
 
 Work to be done:<br>
-   :handle player_1 [] and player_2 []
-    when arrays of hashes are pushed into the player hand array after winning a battle or war <br>
+
    :add testing<br>
-   :remove puts statements for error reporting/ debugging<br>
    
-terminal_war_2.rb<br>
-  : comments out all troubleshooting puts statements for cleaner run<br>
-  : same code<br>
+terminal_war.rb is my first version before starting to refactor the code
