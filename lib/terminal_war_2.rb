@@ -1,28 +1,28 @@
-#This is the card game War. It consists of two players and one deck of 52 playing cards.
-#The card deck is shuffled and all cards are dealt to the two players.
-#Player 1 goes first and lays down the top card.
-#Player 2 then lays down their top card.
-#The player with the highest card wins both cards and then the next round continues.
-#If both players play a card of the same value then they go to War.
-#The players each lay down the next card face down and then expose the second card.
-#The player with the highest card value wins all of the cards unless it is a tie.
-#War continues until a player wins.
-#The game is won when one player collects all of the other players cards or a player runs out of
-#cards during a War.
+# This is the card game War. It consists of two players and one deck of 52 playing cards.
+# The card deck is shuffled and all cards are dealt to the two players.
+# Player 1 goes first and lays down the top card.
+# Player 2 then lays down their top card.
+# The player with the highest card wins both cards and then the next round continues.
+# If both players play a card of the same value then they go to War.
+# The players each lay down the next card face down and then expose the second card.
+# The player with the highest card value wins all of the cards unless it is a tie.
+# War continues until a player wins.
+# The game is won when one player collects all of the other players cards or a player runs out of
+# cards during a War.
 
 
-#asks the player if they want to play the game
+# asks the player if they want to play the game
 def play_prompt
   puts "Would you like to play War with me? Y or N"
   response = gets.chomp
   if response == "Y" || response == "y"
     puts "It's time for War!"
   else
-      abort("Have a good day 'Chicken!'")
+    abort("Have a good day 'Chicken!'")
   end
 end
 
-#asks the player if they are ready for the cards to be dealt
+# asks the player if they are ready for the cards to be dealt
 def deal_prompt
   puts "Ready for me to deal the cards? 'Y' or 'N'"
   response = gets.chomp
@@ -34,14 +34,14 @@ def deal_prompt
   puts "Dealer has #{@dealer.length} cards and you have #{@player.length} cards"
 end
 
-#creates a deck of cards with suits and card values
+# creates a deck of cards with suits and card values
 def deal_cards
   deck_of_cards =[ {:card=>"2C",:value=>2}, {:card=>"3C",:value=>3}, {:card=>"4C",:value=>4}, {:card=>"5C",:value=>5}, {:card=>"6C",:value=>6}, {:card=>"7C",:value=>7}, {:card=>"8C",:value=>8}, {:card=>"9C",:value=>9}, {:card=>"10C",:value=>10}, {:card=>"JC",:value=>11}, {:card=>"QC",:value=>12}, {:card=>"KC",:value=>13}, {:card=>"AC",:value=>14},
                  {:card=>"2D",:value=>2}, {:card=>"3D",:value=>3}, {:card=>"4D",:value=>4}, {:card=>"5D",:value=>5}, {:card=>"6D",:value=>6}, {:card=>"7D",:value=>7}, {:card=>"8D",:value=>8}, {:card=>"9D",:value=>9}, {:card=>"10D",:value=>10}, {:card=>"JD",:value=>11}, {:card=>"QD",:value=>12}, {:card=>"KD",:value=>13}, {:card=>"AD",:value=>14},
                  {:card=>"2H",:value=>2}, {:card=>"3H",:value=>3}, {:card=>"4H",:value=>4}, {:card=>"5H",:value=>5}, {:card=>"6H",:value=>6}, {:card=>"7H",:value=>7}, {:card=>"8H",:value=>8}, {:card=>"9H",:value=>9}, {:card=>"10H",:value=>10}, {:card=>"JH",:value=>11}, {:card=>"QH",:value=>12}, {:card=>"KH",:value=>13}, {:card=>"AH",:value=>14},
                  {:card=>"2S",:value=>2}, {:card=>"3S",:value=>3}, {:card=>"4S",:value=>4}, {:card=>"5S",:value=>5}, {:card=>"6S",:value=>6}, {:card=>"7S",:value=>7}, {:card=>"8S",:value=>8}, {:card=>"9S",:value=>9}, {:card=>"10S",:value=>10}, {:card=>"JS",:value=>11}, {:card=>"QS",:value=>12}, {:card=>"KS",:value=>13}, {:card=>"AS",:value=>14}]
   deck_of_cards = deck_of_cards.shuffle
-  puts  deck_of_cards.inspect
+  #puts deck_of_cards.inspect  #verifies the shuffle
 
   @player = []
   @dealer = []
@@ -50,11 +50,11 @@ def deal_cards
   @player << deck_of_cards.slice!(0)
   @dealer << deck_of_cards.slice!(0)
     end
-  puts @player.inspect
-  puts @dealer.inspect
+  # puts @player.inspect # verifies the player hand
+  # puts @dealer.inspect # verifies the dealer hand
 end
 
-#pulls and evaluates the dealer's top card
+# pulls and evaluates the dealer's top card
 def dealer_draw
   dealer_battle = []
   dealer_battle_value = []
@@ -65,7 +65,7 @@ def dealer_draw
   @dealer_battle_value = (dealer_battle.map{|h| h[:value].to_i})
 end
 
-#pulls and evaluates the player's top card
+# pulls and evaluates the player's top card
 def player_draw
   player_battle = []
   player_battle_value = []
@@ -76,8 +76,8 @@ def player_draw
   @player_battle_value = (player_battle.map{|h| h[:value].to_i})
 end
 
-#evaluates and decides which player wins and pushes all cards into winner's hand
-#handles single war and double war
+# evaluates and decides which player wins and pushes all cards into winner's hand
+# handles single war and double war
 def card_evaluation
         puts @dealer_battle_value <=> @player_battle_value
         battle_value = @dealer_battle_value <=> @player_battle_value
@@ -194,32 +194,31 @@ def card_evaluation
                     puts @player.inspect
                     battle_prompt
 
-                elsif  battle_value == -1
-                  @player << @dealercard
-                  @player << dealercard1
-                  @player << dealercard2
-                  @player << @dealer.slice!(0)
-                  @player << @dealer.slice!(1)
-                  @player << @dealer.slice!(2)
-                  @player << @playercard
-                  @player << playercard1
-                  @player << playercard2
-                  @player << @player.slice!(0)
-                  @player << @dealer.slice!(1)
-                  @player << @dealer.slice!(2)
-                  puts "You Win!"
-                  puts "Dealer has #{@dealer.length} cards and you have #{@player.length} cards"
-                  puts @dealer.inspect
-                  puts @player.inspect
-                  battle_prompt
-
-                  end
-                end
+                  elsif  battle_value == -1
+                    @player << @dealercard
+                    @player << dealercard1
+                    @player << dealercard2
+                    @player << @dealer.slice!(0)
+                    @player << @dealer.slice!(1)
+                    @player << @dealer.slice!(2)
+                    @player << @playercard
+                    @player << playercard1
+                    @player << playercard2
+                    @player << @player.slice!(0)
+                    @player << @dealer.slice!(1)
+                    @player << @dealer.slice!(2)
+                    puts "You Win!"
+                    puts "Dealer has #{@dealer.length} cards and you have #{@player.length} cards"
+                    puts @dealer.inspect
+                    puts @player.inspect
+                    battle_prompt
+                    end
+              end
               end
             end
           end
 #initiates a ticker to keep track of the number of battles
-@ticker = 0
+@num_battles = 0
 
 #defines the battle sequence and evaluation for playing a single round
 def battle_prompt
@@ -236,14 +235,22 @@ def battle_prompt
       puts "Ready for battle? 'Y' or 'N'"
       response = gets.chomp.upcase
       if response == "Y"
-        @ticker = @ticker + 1
-        puts "#{@ticker} battles"
-        puts dealer_draw
-        puts player_draw
-        puts "Dealer draws #{@dealercard}" #shows each players card on the table
-        puts "You draw #{@playercard}" #takes top card out of player array
-
-        card_evaluation
+        @num_battles = @num_battles + 1
+        if @num_battles == 1
+          puts "This is your first battle."
+          puts dealer_draw
+          puts player_draw
+          puts "Dealer draws #{@dealercard}" #shows each players card on the table
+          puts "You draw #{@playercard}" #takes top card out of player array
+          card_evaluation
+        else
+          puts "You have played #{@num_battles} battles."
+          puts dealer_draw
+          puts player_draw
+          puts "Dealer draws #{@dealercard}" #shows each players card on the table
+          puts "You draw #{@playercard}" #takes top card out of player array
+          card_evaluation
+        end
       else
         puts "You quit so the dealer wins! Have a good one!"
       end
@@ -255,10 +262,4 @@ puts "Welcome to War!"
 play_prompt
 deal_prompt
 battle_prompt
-
-
-
-
-
-
 
