@@ -170,6 +170,7 @@ def card_evaluation
           puts "You are out of cards! You lose! Want to play again? Y or N?"
           deal_prompt
           battle_prompt
+        else
           dealer_battle2 = []
           player_battle2 = []
           dealer_battle_value2 = []
@@ -233,6 +234,7 @@ def card_evaluation
               puts "You are out of cards! You lose! Want to play again? Y or N?"
               deal_prompt
               battle_prompt
+            else
               dealer_battle3 = []
               player_battle3 = []
               dealer_battle_value3 = []
