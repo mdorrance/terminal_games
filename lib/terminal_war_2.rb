@@ -17,6 +17,7 @@ def play_prompt
   response = gets.chomp
   if response == "Y" || response == "y"
     puts "It's time for War!"
+    deal_prompt
   else
     abort("Have a good day 'Chicken!'")
   end
@@ -32,6 +33,7 @@ def deal_prompt
       puts "Too bad, I'm dealing anyways!"
     end
   puts "Dealer has #{@dealer.length} cards and you have #{@player.length} cards"
+  battle_prompt
 end
 
 # creates a deck of cards with suits and card values
@@ -350,6 +352,6 @@ end
 
 puts "Welcome to War!"
 play_prompt
-deal_prompt
-battle_prompt
+
+
 
